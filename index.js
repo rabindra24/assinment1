@@ -27,11 +27,18 @@ const upload = multer({
 
 const db = mysql.createConnection({
     host : 'localhost',
-    user : 'root',
-    // port : '3307',
-    password : '',
-    database : 'mern'
+    user : 'u869868394_rabindra',
+    password : 'Uh4wtUcrS5',
+    database : 'u869868394_assinment'
 })
+
+// const db = mysql.createConnection({
+//     host : 'localhost',
+//     user : 'root',
+//     port : '3307',
+//     password : '',
+//     database : 'mern'
+// })
 
 app.get('/',(req,res)=>{
     
@@ -44,10 +51,11 @@ app.get('/',(req,res)=>{
 
 app.post('/upload',upload.single('image'),(req,res)=>{
     const image = req.file.filename;
-    const sql = "UPDATE users SET image = ?";
+    console.log(image)
+    const sql = "UPDATE `users` SET `image` = 'image_1688349430618.jpg' WHERE `users`.`id` = 1; ";
     db.query(sql,[image],(err,result)=>{
-        if(err)return res.json({Message : 'Error'});
-        return res.json({Status : "Success"});
+        if(err)return res.json({Message : err});
+        return res.json({Status : image});
     })
 
     // const sql = "SELECT * FROM users";
@@ -108,7 +116,8 @@ app.post('/register',(req,res)=>{
     // console.log(userName,password)
 
     const InsertQuery = "INSERT INTO `users`( `username`,`password`) VALUES (?, ?) ;";
-     db.query(InsertQuery,[userName,password],(err,result)=>{
+    
+    db.query(InsertQuery,[userName,password],(err,result)=>{
         if(err)return res.json({Message : 'Error'});
         return res.json({Message : 'success'});
     })
