@@ -6,6 +6,7 @@ import multer from "multer";
 import path from "path";
 
 const app = express();
+const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -27,7 +28,7 @@ const upload = multer({
 const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
-    port : '3307',
+    // port : '3307',
     password : '',
     database : 'mern'
 })
@@ -113,6 +114,6 @@ app.post('/register',(req,res)=>{
     })
 })
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
     console.log('server is started on port 3000')
 })
