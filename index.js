@@ -32,6 +32,11 @@ const db = mysql.createConnection({
     database : 'u869868394_assinment'
 })
 
+db.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+
 // const db = mysql.createConnection({
 //     host : 'localhost',
 //     user : 'root',
